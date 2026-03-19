@@ -24,6 +24,8 @@ COPY init.sql  /docker-entrypoint-initdb.d/
 # use volumes for persistence
 VOLUME my-container-volume
 ```
+
+#### The image
 Build the image using buildx (BuildKit). For that I run the following on the path where the Dockerfile is stored.
 ```
 sudo docker buildx build -t "juanalbertoha/m1containerize:latest" .
@@ -38,4 +40,10 @@ sudo docker container run -d --name mypsql m1containerize:latest
 To connect to the database we can use the ``docker exec`` command:
 ```
 sudo docker exec -ti mypsql bash
+```
+
+#### Push image to Docker Hub
+
+```
+sudo docker push juanalbertoha/m1containerize:lates
 ```
