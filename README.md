@@ -59,7 +59,7 @@ In MatchControllerTest changed `MockBean` annotation to `org.springframework.tes
 #### Changes to Dockerfile in image to run postgresql
 I have modified the values for user, password and database according to the source code of the Java application.
 
-```
+```Dockerfile
 # get latest version of postgres
 FROM  postgres:latest
 # set env variables
@@ -87,7 +87,7 @@ sudo docker container run -d -p 5432:5432 --name mypsql juanalbertoha/m1containe
 
 The `Dockerfile` is saved in the Spring Boot application directory and looks like this (note environment variable `FOOTIE_DB_HOST`):
 
-```
+```Dockerfile
 FROM openjdk:19-ea-1-jdk
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
@@ -122,7 +122,7 @@ sudo docker container run -d -p 12080:12080 --network mynetwork --name springboo
 (Sample here: https://github.com/docker/awesome-compose/tree/master/spring-postgres )
 Based on the work done above, we create the compose.yaml file.
 
-```
+```yaml
 services:
   mypsql:
     image: juanalbertoha/m1containerize:latest
@@ -167,4 +167,3 @@ To stop the containers we use:
 ```bash
 sudo docker compose down
 ```
-
