@@ -1,0 +1,21 @@
+services:
+  mypsql:
+    image: juanalbertoha/m1containerize:latest
+    volumes:
+      - my-container-volume
+    networks:
+      - mynetwork
+    expose:
+      - 5432
+  springbootapp:
+    image: juanalbertoha/m2containerizespringboot:latest
+    ports:
+      - 12080:12080
+    environment:
+      - FOOTIE_DB_HOST=mypsql
+    networks:
+      - mynetwork
+volumes:
+  my-container-volume:
+networks:
+  mynetwork:
